@@ -1,37 +1,15 @@
-<% include head.ejs %>
+<% include partials/head.ejs %>
 
     <body>
-        <% for(var i = 0; i < building.length; i++) {%>
-            <a href="/buildings/<%= building[i].building.value.replace(/^https?:\/\//, '').split('/')[3]%>">
+        <% include header.ejs %>
+
+                <% for(var i = 0; i < building.length; i++) {%>
+                    <a href="/buildings/<%= building[i].building.value.replace(/^https?:\/\//, '').split('/')[3]%>">
                         <h1><%= building[i].buildingLabel.value %></h1>
-            </a>
-            <% } %>
-                <% include header.ejs %>
-                    <% include map.ejs %>
-                        <% include detail.ejs %>
+                    </a>
+                    <% } %>
+                        <%# <script type="text/javascript" src="js/bundle.js"></script> %>
+						<% include map.ejs %>
     </body>
 
-    <div class="loader">
-        <div class="sk-circle1 sk-circle"></div>
-        <div class="sk-circle2 sk-circle"></div>
-        <div class="sk-circle3 sk-circle"></div>
-        <div class="sk-circle4 sk-circle"></div>
-        <div class="sk-circle5 sk-circle"></div>
-        <div class="sk-circle6 sk-circle"></div>
-        <div class="sk-circle7 sk-circle"></div>
-        <div class="sk-circle8 sk-circle"></div>
-        <div class="sk-circle9 sk-circle"></div>
-        <div class="sk-circle10 sk-circle"></div>
-        <div class="sk-circle11 sk-circle"></div>
-        <div class="sk-circle12 sk-circle"></div>
-    </div>
-
-    <div class="error">
-        <h3>Deze pagina kan niet worden geladen.</h3>
-    </div>
-
-    <%# <script type="text/javascript" src="js/bundle.js"> %>
-        </script>
-        </body>
-
-        </html>
+    </html>

@@ -1,125 +1,52 @@
 const fetch = require("node-fetch");
+const helpers = require('../helpers');
 
 const models = {
 
-	getBuildings: function() {
-		//Check if the data already exsist in the local storage
-			const sparqlQuery = `
+	getBuildings: function(req, res) {
+		const buildings = [];
 
-			PREFIX hg: <http://rdf.histograph.io/>
-			PREFIX dct: <http://purl.org/dc/terms/>
-			PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-			PREFIX geo: <http://www.opengis.net/ont/geosparql#>
-
-			SELECT ?building ?buildingLabel ?wkt (COUNT(DISTINCT ?cho) AS ?count)  WHERE {
-			    ?building a hg:Building .
-			    ?building rdfs:label ?buildingLabel .
-			    ?cho dct:spatial ?building .
-			    ?building geo:hasGeometry/geo:asWKT ?wkt .
-			}
-			GROUP BY ?building ?buildingLabel ?wkt
-			ORDER BY DESC (?count)
-			LIMIT 50
-
-	 		`;
-			//Encode the query
-			const encodedQuery = encodeURIComponent(sparqlQuery);
-
-			//Save the data url
-			const queryUrl = 'https://api.data.adamlink.nl/datasets/AdamNet/all/services/hva2018/sparql?default-graph-uri=&query=' + encodedQuery + '&format=application%2Fsparql-results%2Bjson&timeout=0&debug=on';
-
-			fetch(queryUrl)
-				.then(response => response.json()) // transform the data into json
+		if (buildings.length > 0) {
+			res.render('index.ejs', {
+				building: buildings
+			});
+		} else {
+			fetch(helpers.allBuildingQuery())
+				.then(response => response.json())
 				.then(data => {
-					const results = data.results.bindings; // get the results
-				})
-				.catch(error => {
-					// if there is any error you will catch them here
+					const results = data.results.bindings;
+					res.render('index.ejs', {
+						building: results
+					});
+				}).catch(error => {
 					console.log(error);
 				});
 
+		}
+
 	},
-	getBuildingDetail: function(name) {
+	getBuildingDetail: function(req, res, name) {
 
-		let data;
-		if (localStorage.getItem("buildings") === null) {
-			error.show();
-		} else {
-			data = JSON.parse(localStorage.getItem('buildings'));
-		}
-		//Get the object with the name of name of the parameter and save it in variable
-		const dataDetail = data.find(d => helpers.getSegment(d.building.value, 3) == name);
-
-		const sparqlQuery = `
-
-		PREFIX hg: <http://rdf.histograph.io/>
-		PREFIX dct: <http://purl.org/dc/terms/>
-		PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-		PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-		PREFIX void: <http://rdfs.org/ns/void#>
-		PREFIX sem: <http://semanticweb.cs.vu.nl/2009/11/sem/>
-
-		SELECT DISTINCT ?cho ?building ?img ?col ?date  WHERE {
-
-		 ?cho dct:spatial ?b .
-		 ?b a hg:Building .
-		 ?b rdfs:label ?building .
-
-		 ?cho foaf:depiction ?img .
-		 ?cho void:inDataset ?col .
-		 ?cho foaf:depiction ?img .
-		 ?cho sem:hasBeginTimeStamp ?date .
-
-		 FILTER REGEX(?building,"${dataDetail.buildingLabel.value}")
-		}
-		ORDER BY ?date
-
-		`;
-
-		const sparqlQueryDetails = `
-			PREFIX hg: <http://rdf.histograph.io/>
-			PREFIX dct: <http://purl.org/dc/terms/>
-			PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-			PREFIX geo: <http://www.opengis.net/ont/geosparql#>
-			PREFIX sem: <http://semanticweb.cs.vu.nl/2009/11/sem/>
-
-			SELECT ?building ?buildingLabel ?start (COUNT(DISTINCT ?cho) AS ?count)  WHERE {
-				?building a hg:Building .
-				?building rdfs:label ?buildingLabel .
-				?cho dct:spatial ?building .
-				?building sem:hasEarliestBeginTimeStamp ?start .
-				FILTER REGEX(?buildingLabel,"${name}")
-			}
-
-		`;
-
-		const encodedQuery = encodeURIComponent(sparqlQuery);
-		const queryUrl = 'https://api.data.adamlink.nl/datasets/AdamNet/all/services/hva2018/sparql?default-graph-uri=&query=' + encodedQuery + '&format=application%2Fsparql-results%2Bjson&timeout=0&debug=on';
-
-		//Encode the query with the details of the building
-
-
-		fetch(queryUrl)
+		fetch(helpers.allBuildingQuery())
 			.then(response => response.json()) // transform the data into json
 			.then(data => {
+				const results = data.results.bindings; // get the results
+				// console.log(req.params.name);
+				const dataDetail = results.find(d => helpers.getSegment(d.building.value, 3) == req.params.name);
 
-				const imgData = data.results.bindings;
-
-				sort.getInput(imgData);
-				filter.getInput(imgData);
-				render.detail(dataDetail);
-				render.images(imgData);
-				loader.hide();
-
+				return fetch(helpers.buildingDetailQuery(dataDetail.buildingLabel.value));
+			})
+			.then(response => response.json())
+			.then(data => {
+				const results = data.results.bindings;
+				res.render('detail.ejs', {
+					buildingDetail: results
+				});
 			})
 			.catch(error => {
-				// if there is any error you will catch them here
 				console.log(error);
-				error.show();
-				loader.hide();
 			});
-
-	},
+	}
 
 };
 
