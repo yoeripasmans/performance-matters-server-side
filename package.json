@@ -8,15 +8,17 @@
     },
     "author": "Yoeri Pasmans",
     "license": "ISC",
-    "dependencies": {
+    "dependencies": {},
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-preset-es2015": "^6.24.1",
         "body-parser": "^1.17.1",
         "cookie-parser": "^1.4.3",
+        "ejs": "^2.5.7",
         "express": "^4.15.2",
         "http": "0.0.0",
+        "mapbox": "^1.0.0-beta9",
         "multer": "^1.3.0",
         "request": "^2.81.0"
-    },
-    "devDependencies": {
-        "ejs": "^2.5.7"
     }
 }
