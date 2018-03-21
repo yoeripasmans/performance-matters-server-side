@@ -1,6 +1,6 @@
-var wkt = require('terraformer-wkt-parser');
+const wkt = require('terraformer-wkt-parser');
 
-var helpers = {
+const helpers = {
 	getSegment: function(url, index) {
 		return url.replace(/^https?:\/\//, '').split('/')[index];
 	},

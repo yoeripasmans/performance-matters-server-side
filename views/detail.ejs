@@ -9,9 +9,9 @@
 		</a>
         <header>
 
-            <h2><%= buildingDetail[0].building.value %></h2>
+            <h2><%= buildingImages[0].building.value %></h2>
 
-            <p>Foto's van <%= buildingDetail[0].date.value %> t/m 2018</p>
+            <p>Foto's van <%= buildingImages[0].date.value %> t/m 2018</p>
             <!-- <p class="desc">Station Amsterdam Centraal is het centraal station van de Nederlandse hoofdstad Amsterdam. Het is gebouwd tussen 1881 en 1889 naar ontwerp van P.J.H. Cuypers, A.L. van Gendt (stationsgebouw) en L.J. Eijmer (stationskap). Het station telt zes perrons
 				die via drie dwarsgangen onder de 15 sporen (waarvan 11 perronsporen) bereikbaar zijn. Dagelijks telt Amsterdam Centraal circa 160.000 in- en uitstappers, waarmee het na Station Utrecht Centraal het drukste station van Nederland is.[1] Reizigers
 				kunnen gebruikmaken van treinen, metro's, trams, bussen en veren. Het station is gelegen op het aangeplempte Stationseiland in het IJ.</p> -->
@@ -29,9 +29,9 @@
 
         <div class="grid">
             <div class="grid-sizer"></div>
-            <% for(var i = 0; i < buildingDetail.length; i++) {%>
-                <a href="<%= buildingDetail[i].building.value.replace(/^https?:\/\//, '').split('/')[3]%>/<%=i%>" class="grid-item">
-                    <img class="gallery-img" src="<%= buildingDetail[i].img.value %>" alt="Image of a building in Amsterdam">
+            <% for(var i = 0; i < buildingImages.length; i++) {%>
+                <a href="<%= buildingImages[0].building.value.replace(/^https?:\/\//, '').split('/')[3]%>/<%=i%>" class="grid-item">
+                    <img class="gallery-img" src="<%= buildingImages[i].img.value %>" alt="Image of a building in Amsterdam">
                 </a>
                 <% } %>
         </div>
