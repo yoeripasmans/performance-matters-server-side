@@ -1,4 +1,5 @@
 const toggle = require('./modules/toggle.js');
+const map = require('./modules/map.js');
 const filter = require('./modules/filter.js');
 
 (function() {
@@ -6,7 +7,7 @@ const filter = require('./modules/filter.js');
 	const app = {
 		init: function() {
 			toggle.init();
-			filter.getInput();
+			// map.init();
 		},
 	};
 	//Start app

@@ -9,4 +9,4 @@ const error = {
 
 };
 
-export default error;
+module.exports = error;

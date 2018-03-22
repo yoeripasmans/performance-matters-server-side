@@ -9,4 +9,4 @@ const loader = {
 
 };
 
-export default loader;
+module.exports = loader;

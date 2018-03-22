@@ -1,10 +1,11 @@
-const mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
-import sections from './sections.js';
-import helpers from './helpers.js';
-import api from './api.js';
-import loader from './loader.js';
-import error from './error.js';
-import animation from './animation.js';
+const mapboxgl = require('mapbox-gl');
+const loader = require('./loader.js');
+const error = require('./error.js');
+// import sections from './sections.js';
+// import helpers from './helpers.js';
+// import api from './api.js';
+// import error from './error.js';
+// import animation from './animation.js';
 
 const map = {
 	init: function(data) {
@@ -37,8 +38,6 @@ const map = {
 
 		}));
 
-		//Format the data
-		helpers.formatData(data);
 
 		map.on('load', (e) => {
 			loader.hide();
@@ -65,8 +64,6 @@ const map = {
 					if(d.count.value > 250) {
 					el.style.zIndex = 1;
 					}
-
-					animation.fadeIn(el);
 
 					//Adds tooltip
 					const popup = new mapboxgl.Popup({
@@ -116,4 +113,4 @@ const map = {
 	},
 
 };
-export default map;
+module.exports = map;
