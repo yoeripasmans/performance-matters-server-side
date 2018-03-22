@@ -4,8 +4,13 @@
     "description": "oba app server side",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node app.js"
+        "start": "node app.js",
+        "build:js": "browserify src/js/index.js -o public/bundle.js",
+        "build:scss-compile": "node-sass  src/css/ -o public/",
+        "build:css": "postcss public/index.css > public/bundle.css",
+        "build": "npm run build:js && npm run build:scss-compile && npm run build:css",
+        "lint": "xo && stylelint src/index.css",
+        "test": "npm run build && npm run lint"
     },
     "author": "Yoeri Pasmans",
     "license": "ISC",
@@ -14,14 +19,26 @@
         "babel-cli": "^6.26.0",
         "babel-preset-es2015": "^6.24.1",
         "body-parser": "^1.17.1",
+        "browserify": "^16.1.1",
         "cookie-parser": "^1.4.3",
+        "cssnano": "^3.10.0",
         "ejs": "^2.5.7",
         "express": "^4.15.2",
         "http": "0.0.0",
         "mapbox": "^1.0.0-beta9",
         "multer": "^1.3.0",
         "node-fetch": "^2.1.1",
+        "node-sass": "^4.7.2",
+        "postcss-cli": "^5.0.0",
         "request": "^2.81.0",
+        "scssify": "^3.0.1",
         "terraformer-wkt-parser": "^1.1.2"
+    },
+    "postcss": {
+        "plugins": {
+            "cssnano": {
+                "preset": "default"
+            }
+        }
     }
 }
