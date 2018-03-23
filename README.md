@@ -65,8 +65,8 @@ app.use(compression());
 - Removed `FontAwesome` and used svg's as icons
 
 ## Audits
-
-
+### Latest build:
+![Preview](latestaudit.png)
 
 ## License
 
