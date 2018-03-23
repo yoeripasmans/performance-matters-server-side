@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "start": "node app.js",
-        "build:js": "browserify src/js/index.js -o public/bundle.js",
+        "build:js": "browserify src/js/index.js | uglifyjs -c > public/bundle.js",
         "build:scss-compile": "node-sass  src/scss/ -o src/css/",
         "build:css": "postcss src/css/index.css > public/bundle.css",
         "build": "npm run build:js && npm run build:scss-compile && npm run build:css"
@@ -37,6 +37,7 @@
         "request": "^2.81.0",
         "scssify": "^3.0.1",
         "terraformer-wkt-parser": "^1.1.2",
+        "uglify-js-es6": "^2.8.9",
         "window": "^4.2.5"
     },
     "postcss": {

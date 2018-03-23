@@ -1,6 +1,6 @@
 # OBA application server-side
 
-Overview of the 50 most popular buildings of Amsterdam rendered serverside.
+This project serves a serverside version of the OBA - Overview of the 50 most popular buildings of Amsterdam.
 
 ## Getting started
 
@@ -33,15 +33,40 @@ to `package.json` to compile scss to css.
             }
         }
 ```
+7. NPM installed `uglify-js-es6`
+8. Added javascript minify to `package.json` with:
+```javascript
+    "build:js": "browserify src/js/index.js | uglifyjs -c > public/bundle.js",
+```
 
 ## Performance
 
-- Minified CSS with
+- Minified CSS with postCSS and CSSNano by adding to `package.json`:
+```javascript
+"postcss": {
+	   "plugins": {
+		   "cssnano": {
+			   "preset": "default"
+		   }
+	   }
+   }
+```
 
-- Compress all responses on the server with:
+- Minified JS with uglifyjs by adding to `package.json`:
+```javascript
+"build:js": "browserify src/js/index.js | uglifyjs -c > public/bundle.js",
+```
+
+- Compress all responses on the server by adding this to `app.js`:
 ```javascript
 app.use(compression());
 ```
+
+- Removed `FontAwesome` and used svg's as icons
+
+## Audits
+
+
 
 ## License
 
