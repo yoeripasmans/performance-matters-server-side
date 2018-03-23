@@ -5,7 +5,7 @@
     <div class="detail-wrapper">
         <a href="/" class="back-button">
 		<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 31.494 31.494" width="20px"><path d="M10.273 5.009c.444-.444 1.143-.444 1.587 0 .429.429.429 1.143 0 1.571l-8.047 8.047h26.554c.619 0 1.127.492 1.127 1.111s-.508 1.127-1.127 1.127H3.813l8.047 8.032c.429.444.429 1.159 0 1.587-.444.444-1.143.444-1.587 0L.321 16.532c-.429-.429-.429-1.143 0-1.571l9.952-9.952z" fill="#1e201d"/></svg>
-		Terug naar kaart
+		Terug naar overzicht
 		</a>
         <header>
 
@@ -28,7 +28,7 @@
         </header>
 
         <div class="grid">
-            <div class="grid-sizer"></div>
+
             <% for(var i = 0; i < buildingImages.length; i++) {%>
                 <a href="<%= buildingImages[0].building.value.replace(/^https?:\/\//, '').split('/')[3]%>/<%=i%>" class="grid-item">
                     <img class="gallery-img" src="<%= buildingImages[i].img.value %>" alt="Image of a building in Amsterdam">

@@ -1,6 +1,7 @@
 const toggle = require('./modules/toggle.js');
-const map = require('./modules/map.js');
-const filter = require('./modules/filter.js');
+// const map = require('./modules/map.js');
+// const filter = require('./modules/filter.js');
+// const gallery = require('./modules/gallery.js');
 
 (function() {
 

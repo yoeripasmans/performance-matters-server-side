@@ -16,7 +16,7 @@ const models = {
 			fetch(helpers.allBuildingQuery())
 				.then(response => response.json())
 				.then(data => {
-				
+
 					const results = data.results.bindings;
 					this.buildingData = results;
 					res.render('index.ejs', {

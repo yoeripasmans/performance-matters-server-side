@@ -2,14 +2,20 @@
 
     <body>
         <% include header.ejs %>
+		<section class="overview-wrapper">
+			<ul>
+				<% for(var i = 1; i < building.length; i++) {%>
+					<li>
+						<a href="/buildings/<%= building[i].building.value.replace(/^https?:\/\//, '').split('/')[3]%>">
+							<%= ([i]) + ". " + building[i].buildingLabel.value %>
+						</a>
+					</li>
+					<% } %>
+			</ul>
+		</section>
 
-                <% for(var i = 0; i < building.length; i++) {%>
-                    <a href="/buildings/<%= building[i].building.value.replace(/^https?:\/\//, '').split('/')[3]%>">
-                        <h1><%= building[i].buildingLabel.value %></h1>
-                    </a>
-                    <% } %>
-		<% include map.ejs %>
-		<script type="text/javascript" src="bundle.js"></script>
+            <% include map.ejs %>
+            <script type="text/javascript" src="bundle.js"></script>
     </body>
 
     </html>

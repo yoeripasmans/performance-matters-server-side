@@ -1,6 +1,5 @@
 var Masonry = require('masonry-layout');
 var imagesLoaded = require('imagesloaded');
-import loader from './loader.js';
 
 const gallery = {
 	init: function() {
@@ -31,4 +30,4 @@ const gallery = {
 	}
 };
 
-export default gallery;
+module.exports = gallery;
