@@ -64,9 +64,19 @@ app.use(compression());
 
 - Removed `FontAwesome` and used svg's as icons
 
+- Added service worker
+
 ## Audits
-### Latest build:
+### First build without minification, bundling and compression:
+![Preview](first.png)
+
+### First optimized build with minification, bundling and compression:
 ![Preview](latestaudit.png)
+
+
+## Service Worker
+
+Installed service worker to cache static files and serve them trough the worker.
 
 ## License
 
