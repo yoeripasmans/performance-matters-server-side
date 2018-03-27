@@ -1,0 +1,10 @@
+{
+    "name": "OBA Popular buildings",
+    "short_name": "OBA App",
+    "description": "oba app server side",
+    "dir": "auto",
+    "lang": "en-US",
+    "display": "standalone",
+    "start_url": "/?homescreen=1"
+
+}

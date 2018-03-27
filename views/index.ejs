@@ -2,20 +2,25 @@
 
     <body>
         <% include header.ejs %>
-		<section class="overview-wrapper">
-			<ul>
-				<% for(var i = 1; i < building.length; i++) {%>
-					<li>
-						<a href="/buildings/<%= building[i].building.value.replace(/^https?:\/\//, '').split('/')[3]%>">
-							<%= ([i]) + ". " + building[i].buildingLabel.value %>
-						</a>
-					</li>
-					<% } %>
-			</ul>
-		</section>
+            <section class="overview-wrapper">
+                <ul>
+                    <% for(var i = 1; i < building.length; i++) {%>
+                        <li>
+                            <a href="/buildings/<%= building[i].building.value.replace(/^https?:\/\//, '').split('/')[3]%>">
+                                <%= ([i]) + ". " + building[i].buildingLabel.value %>
+                            </a>
+                        </li>
+                        <% } %>
+                </ul>
+            </section>
 
             <% include map.ejs %>
-            <script type="text/javascript" src="bundle.js"></script>
+                <script type="text/javascript" src="bundle.js"></script>
+                <script>
+                    if ('serviceWorker' in navigator) {
+                        navigator.serviceWorker.register('/sw.js');
+                    }
+                </script>
     </body>
 
     </html>
