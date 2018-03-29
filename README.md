@@ -62,21 +62,41 @@ to `package.json` to compile scss to css.
 app.use(compression());
 ```
 
-- Removed `FontAwesome` and used svg's as icons
+- Removed `FontAwesome` and used svg's as icons.
 
-- Added service worker
+- Added service worker to serve static files.
 
 ## Audits
 ### First build without minification, bundling and compression:
 ![Preview](firstaudit.png)
 
-### First optimized build with minification, bundling and compression:
+### Optimized build with minification, bundling and compression:
 ![Preview](latestaudit.png)
 
 
 ## Service Worker
 
-Installed service worker to cache static files and serve them trough the worker.
+- Installed service worker by adding `sw.js` file to public folder.
+- Then added this to serve static files from the service Worker
+
+```javascript
+self.addEventListener('install', event => event.waitUntil(
+    caches.open('oba-core')
+        .then(cache => cache.addAll([
+            '/css/bundle.css',
+			'/js/bundle.js',
+        ]))
+        .then(self.skipWaiting())
+));
+
+self.addEventListener('fetch', function(event) {
+  event.respondWith(
+    fetch(event.request).catch(function() {
+      return caches.match(event.request);
+    })
+  );
+});
+```
 
 ## License
 
