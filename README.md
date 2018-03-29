@@ -68,7 +68,7 @@ app.use(compression());
 
 ## Audits
 ### First build without minification, bundling and compression:
-![Preview](first.png)
+![Preview](firstaudit.png)
 
 ### First optimized build with minification, bundling and compression:
 ![Preview](latestaudit.png)
