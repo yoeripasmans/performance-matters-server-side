@@ -1,7 +1,7 @@
 var Masonry = require('masonry-layout');
 var imagesLoaded = require('imagesloaded');
 
-const gallery = {
+var gallery = {
 	init: function() {
 		// vanilla JS
 		// init with element

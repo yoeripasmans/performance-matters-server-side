@@ -66,14 +66,6 @@ app.use(compression());
 
 - Added service worker to serve static files.
 
-## Audits
-### First build without minification, bundling and compression:
-![Preview](firstaudit.png)
-
-### Optimized build with minification, bundling and compression:
-![Preview](latestaudit.png)
-
-
 ## Service Worker
 
 - Installed service worker by adding `sw.js` file to public folder.
