@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html lang="nl">
 
-	<head>
-	    <% include partials/head.ejs %>
-	</head>
+<head>
+	<% include partials/head.ejs %>
+</head>
 
-	<body>
-		<header>
-			<% include header.ejs %>
-		</header>
+<body>
+	<header>
+		<% include header.ejs %>
+	</header>
 
-	        <section class="overview-wrapper">
+	<section class="overview-wrapper">
 
-			    <ul>
-	                <% for(var i = 1; i < building.length; i++) {%>
-	                    <li>
-	                        <a href="/buildings/<%= building[i].building.value.replace(/^https?:\/\//, '').split('/')[3]%>">
-	                            <%= ([i]) + ". " + building[i].buildingLabel.value %>
-	                        </a>
-	                    </li>
-	                    <% } %>
-	            </ul>
+		<ul>
+			<% for(var i = 1; i < building.length; i++) {%>
+				<li>
+					<a href="/buildings/<%= building[i].building.value.replace(/^https?:\/\//, '').split('/')[3]%>">
+						<%= ([i]) + ". " + building[i].buildingLabel.value %>
+					</a>
+				</li>
+				<% } %>
+		</ul>
 
-	        </section>
+	</section>
 
-	        <% include map.ejs %>
+	<% include map.ejs %>
 
-	            <script type="text/javascript" src="js/bundle.js"></script>
-	            <script>
-	                if ('serviceWorker' in navigator) {
-	                    navigator.serviceWorker
-	                        .register('sw.js');
+		<script type="text/javascript" src="js/bundle.js"></script>
+		<script>
+			if ('serviceWorker' in navigator) {
+				navigator.serviceWorker
+					.register('sw.js');
 
-	                }
-	            </script>
-	</body>
+			}
+		</script>
+</body>
 
 </html>

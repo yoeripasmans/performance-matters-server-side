@@ -8,7 +8,7 @@ const gallery = require('./modules/gallery.js');
 	const app = {
 		init: function() {
 			toggle.init();
-			gallery.init();
+			// gallery.init();
 		},
 	};
 	//Start app
